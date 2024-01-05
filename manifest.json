@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "version": "1.0",
+    "name": "Link Saver",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "permissions": [
+        "tabs",
+	"tabGroups",
+	"storage"
+    ],
+    "host_permissions": [
+    "https://developer.chrome.com/*"
+    ]
+}

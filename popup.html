@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Link Saver</h1>
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <label>
+      <input
+        class="input-link"
+        type="text"
+        id="input"
+        placeholder="www.example.com"
+      />
+    </label>
+    <div>
+      <button id="add-tab-btn">Save Tab</button>
+      <button id="add-group-btn">Save Group</button>
+      <button id="add-input-btn">Save Input</button>
+      <button id="delete-btn">Delete All</button>
+    </div>
+    <section class="main-section" id="main-section"></section>
+
+    <script src="./popup.js" defer></script>
+  </body>
+</html>

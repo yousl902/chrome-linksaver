@@ -1,0 +1,184 @@
+body {
+  overflow: hidden;
+  width: 100%;
+  /* min-height: 350px; */
+  /* min-height: auto; */
+  height: 350px;
+  background-color: #6741d9;
+}
+
+div {
+  min-width: 400px;
+}
+
+a:hover {
+  color: #000;
+  transition: 0.5s;
+}
+
+h1 {
+  margin: 2px;
+  margin-bottom: 14px;
+  margin-right: auto;
+  font-size: 20px;
+}
+
+input {
+  min-width: 300px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 70px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #000;
+  background-color: #d0bfff;
+  color: #000;
+  font-size: 10px;
+}
+
+button:hover {
+  transition: 0.5s;
+  background-color: #4dabf7;
+  color: #fff;
+  cursor: pointer;
+}
+
+li {
+  display: none;
+}
+
+li::marker {
+  content: ""; 
+  /* content: "🔗"; */
+}
+
+.header {
+  display: flex;
+}
+
+.switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  margin-right: 15px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}
+
+.group-checkbox {
+  margin: 0px;
+  margin-bottom: auto;
+  margin-top: 5px;
+  margin-right: 0px;
+  width: 10px;
+  min-width: 10px;
+}
+
+.group-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  width: 13px;
+  height: 13px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.group-checkbox:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid black;
+  transition: all 0.1s ease;
+}
+
+.group-checkbox:checked:before {
+  border-bottom: 0;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-top: 6px solid black;
+}
+
+.main-section {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.group-div {
+  margin-top: 15px;
+}
+
+ul {
+  padding-left: 0px;
+  margin-left: 17px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+.group-button {
+  height: 20px;
+  display: inline-block;
+  background-color: #ffec99;
+  text-align: center;
+  line-height: 100%;
+  width: auto;
+  min-height: 5px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.inp-btn-container {
+  display: inline-flex;
+}
