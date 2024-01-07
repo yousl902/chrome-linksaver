@@ -41,6 +41,49 @@ const addGroupButtonListener = (groupId) => {
   });
 };
 
+const addDeleteGroupListener = (groupId) => {
+  if (groupId === "singles") {
+    alert("You can't delete the singles group");
+    return;
+  }
+  if (confirm("Are you sure you want to delete this group?")) {
+    document.getElementById("div-" + groupId).remove();
+    let groupIndex = linksFromLocalStorage.groups.findIndex((group) => {
+      return group.groupId === groupId;
+    });
+    if (groupIndex !== -1) {
+      linksFromLocalStorage.groups.splice(groupIndex, 1);
+    }
+    localStorage.setItem("links", JSON.stringify(linksFromLocalStorage));
+  }
+};
+
+function editLink(event) {
+  let editButton = event.target;
+  let listItem = editButton.parentNode;
+  let link = listItem.querySelector("a");
+  let inputField = listItem.querySelector("input");
+  inputField.addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) {
+      link.textContent = inputField.value;
+      inputField.style.display = "none";
+    }
+  });
+  inputField.addEventListener("blur", function () {
+    inputField.style.display = "none";
+    link.textContent = inputField.value;
+  });
+
+  if (inputField.style.display === "none") {
+    inputField.style.display = "block";
+    inputField.value = link.textContent;
+    inputField.focus();
+  } else {
+    inputField.style.display = "none";
+    link.textContent = inputField.value;
+  }
+}
+
 const mainSection = document.getElementById("main-section");
 function renderGroup(group, groupId, groupName) {
   if (document.getElementById("div-singles") && groupId === "singles") {
@@ -52,6 +95,7 @@ function renderGroup(group, groupId, groupName) {
     	<div class="inp-btn-container">
 	  <input class="group-checkbox" type="checkbox" id="${"checkbox-" + groupId}">
 	  <button class="group-button" id="${"button-" + groupId}">${groupName}</button>
+	  <button class="delete-group-btn" id="${"delete-" + groupId}">&#x2715;</button>
     	</div>
 	<div class="ul-div">
 	  <ul id="${"ul-" + groupId}" data-group-name="${groupName}">
@@ -68,9 +112,15 @@ function renderGroup(group, groupId, groupName) {
     linkItem += `
       <li>
 	<a href='${tab.url}' target='_blank' data-header='temp' title='${tab.url}'>${domainName}</a>
+        <button class="delete-single-btn">&#x2715;</button>
+	<button class="edit-single-btn">&#x270E</button>
+        <input id="link-name" id="link-name" type="text" style="display: none;">
       </li>`;
     ulElement.innerHTML += linkItem;
   }
+  document.getElementById("delete-" + groupId).addEventListener("click", () => {
+    addDeleteGroupListener(groupId);
+  });
   document
     .getElementById("checkbox-" + groupId)
     .addEventListener("change", addCheckboxListener(groupId));
@@ -133,7 +183,7 @@ if (linksFromLocalStorage) {
 }
 
 const addInputBtn = document.getElementById("add-input-btn");
-const input = document.getElementById("input");
+const input = document.getElementById("input-link");
 addInputBtn.addEventListener("click", () => {
   const value = input.value;
   if (!isValidUrl(value)) {
@@ -189,8 +239,8 @@ addGroupBtn.addEventListener("click", () => {
   });
 });
 
-const deleteInputBtn = document.getElementById("delete-btn");
-deleteInputBtn.addEventListener("click", () => {
+const deleteAllBtn = document.getElementById("delete-btn");
+deleteAllBtn.addEventListener("click", () => {
   if (confirm("Are you sure you want to delete all links?")) {
     localStorage.setItem(
       "links",
@@ -201,3 +251,26 @@ deleteInputBtn.addEventListener("click", () => {
     mainSection.innerHTML = "";
   }
 });
+
+const deleteTabBtns = document.getElementsByClassName("delete-single-btn");
+for (const btn of deleteTabBtns) {
+  btn.addEventListener("click", () => {
+    btn.parentElement.remove();
+    // TODO: remove from local storage
+  });
+}
+
+// const editTabBtns = document.getElementsByClassName("edit-single-btn");
+// for (const btn of editTabBtns) {
+//   btn.addEventListener("click", () => {
+//     // TODO: remove from local storage
+//     console.log(linksFromLocalStorage);
+//   });
+// }
+
+const editLinkNameBtns = document.getElementsByClassName("edit-single-btn");
+for (const btn of editLinkNameBtns) {
+
+    console.log(linksFromLocalStorage);
+  btn.addEventListener("click", editLink);
+}
